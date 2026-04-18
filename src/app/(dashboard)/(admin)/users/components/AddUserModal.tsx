@@ -13,15 +13,10 @@ import {
 } from '@/components/ui/dialog';
 import AdminForm from './AdminForm';
 import StudentForm from './StudentForm';
+import TabSwitcher, { type Tab } from './TabsSwitcher';
 import TeacherForm from './TeacherForm';
 
-type UserType = 'student' | 'teacher' | 'admin';
-
-const userTypes: {
-  value: UserType;
-  label: string;
-  icon: React.ElementType;
-}[] = [
+const userTypes: Tab[] = [
   { value: 'student', label: 'Student', icon: User },
   { value: 'teacher', label: 'Teacher', icon: UserCheck },
   { value: 'admin', label: 'Admin', icon: UserCog },
@@ -29,7 +24,7 @@ const userTypes: {
 
 export default function AddUserModal() {
   const [open, setOpen] = useState(false);
-  const [selectedType, setSelectedType] = useState<UserType>('student');
+  const [selectedType, setSelectedType] = useState<UserRole>('student');
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -47,24 +42,12 @@ export default function AddUserModal() {
           </DialogDescription>
         </DialogHeader>
 
-        {/* Type Selector */}
-        <div className="flex gap-2 rounded-xl bg-muted p-1">
-          {userTypes.map(({ value, label, icon: Icon }) => (
-            <button
-              key={value}
-              type="button"
-              onClick={() => setSelectedType(value)}
-              className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                selectedType === value
-                  ? 'bg-white text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              <Icon className="w-4 h-4" />
-              {label}
-            </button>
-          ))}
-        </div>
+        <TabSwitcher
+          tabs={userTypes}
+          value={selectedType}
+          onChange={setSelectedType as unknown as (value: string) => void}
+          // className="w-full max-w-xs" // You can pass custom width classes too!
+        />
 
         {/* Form */}
         {selectedType === 'student' && <StudentForm />}

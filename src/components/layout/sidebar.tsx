@@ -7,7 +7,7 @@ interface SidebarProps {
 
 export default function Sidebar({ userRole }: SidebarProps) {
   return (
-    <div className="w-64 bg-gray-50 border-r border-gray-200 flex flex-col">
+    <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-gray-100">
         <div className="flex items-center gap-3">
@@ -24,7 +24,7 @@ export default function Sidebar({ userRole }: SidebarProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 pr-0">
+      <nav className="flex-1 p-4">
         <SidebarNav userRole={userRole} />
       </nav>
 

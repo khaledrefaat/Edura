@@ -11,7 +11,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-brand-gradient shadow-lg hover:shadow-xl hover:brightness-110',
+          'bg-primary text-white shadow-lg hover:shadow-xl hover:brightness-110',
+        secondary:
+          'bg-secondary text-white shadow-lg hover:shadow-xl hover:brightness-110',
       },
       disabled: {
         true: 'opacity-50 cursor-not-allowed pointer-events-none',
@@ -58,7 +60,7 @@ export default function CustomButton({
       {...props}
     >
       {loading && (
-        <span className="absolute inset-0 flex items-center justify-center bg-white/20">
+        <span className="absolute inset-0 flex items-center justify-center bg-primary text-white">
           <Loader2 className="animate-spin text-white" />
         </span>
       )}

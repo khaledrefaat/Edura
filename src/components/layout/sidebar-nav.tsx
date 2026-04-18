@@ -82,16 +82,16 @@ export default function SidebarNav({ userRole }: SidebarNavProps) {
           <li key={item.id}>
             <button
               onClick={() => router.push(item.href)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-l-full transition-all cursor-pointer ${
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-white text-primary shadow-md'
+                  ? 'bg-[#D4AF37] text-white shadow-md'
                   : 'text-gray-700 hover:bg-gray-50'
               }`}
               type="button"
             >
               {/* there was a lag here when i did use the currentColor, without adding it to the Icon className, in case if you did wonder why did i add condition to add colors again to the icon */}
               <Icon
-                className={`w-5 h-5 ${isActive ? 'text-primary' : 'text-gray-700'}`}
+                className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-700'}`}
                 fill={isActive ? 'currentColor' : 'none'}
               />
               <span className="text-sm">{item.label}</span>

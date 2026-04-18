@@ -158,21 +158,3 @@
     @apply font-sans;
   }
 }
-
-@utility bg-brand-gradient {
-  background-image: linear-gradient(
-    to right,
-    var(--brand-grad-from),
-    var(--brand-grad-to)
-  );
-  color: var(--brand-grad-fg);
-}
-
-@utility bg-brand-gradient-logo {
-  background-image: linear-gradient(
-    to bottom right,
-    var(--brand-grad-logo-from),
-    var(--brand-grad-to)
-  );
-  color: var(--brand-grad-fg);
-}
