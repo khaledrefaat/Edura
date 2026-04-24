@@ -39,19 +39,19 @@ const allMenuItems = {
   teacher: [
     {
       id: 'teacher-profile',
-      href: '/teacher/1/profile',
+      href: '/teacher/profile',
       label: 'My Profile',
       icon: UserCircle,
     },
     {
       id: 'teacher-schedule-page',
-      href: '/teacher/1/schedule',
+      href: '/teacher/schedule',
       label: 'My Schedule',
       icon: Calendar,
     },
     {
       id: 'courses',
-      href: '/teacher/1/courses',
+      href: '/teacher/courses',
       label: 'My Courses',
       icon: BookOpen,
     },
@@ -67,12 +67,6 @@ const allMenuItems = {
       id: 'student-schedule-page',
       href: '/student/schedule',
       label: 'My Schedule',
-      icon: Calendar,
-    },
-    {
-      id: 'student-calendar',
-      href: '/student/calendar',
-      label: 'Class Calendar',
       icon: Calendar,
     },
   ],

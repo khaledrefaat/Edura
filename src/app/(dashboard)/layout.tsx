@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <SidebarProvider>
-      <AppSidebar userRole="admin" />
+      <AppSidebar userRole="teacher" />
       <SidebarInset>
         <main className="flex-1 overflow-y-auto p-6">
           <DashboardTitle>
