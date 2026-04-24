@@ -2,9 +2,9 @@
 
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
+import FiltersBar from '@/components/common/FiltersBar';
 import users from '@/DUMMY_DATA/USERS';
 import AddUserModal from './components/AddUserModal';
-import UsersFilters from './components/UsersFilters';
 import UsersTable from './components/UsersTable';
 
 function UserManagementContent() {
@@ -43,7 +43,15 @@ function UserManagementContent() {
       </div>
 
       {/* Filters and Search */}
-      <UsersFilters />
+      <FiltersBar
+        searchPlaceholder="Search by name or email..."
+        filterKey="role"
+        filterOptions={[
+          { value: 'All', label: 'All Roles' },
+          { value: 'Teacher', label: 'Teachers' },
+          { value: 'Student', label: 'Students' },
+        ]}
+      />
 
       {/* Users Table */}
       <UsersTable

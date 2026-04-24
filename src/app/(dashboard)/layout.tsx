@@ -1,4 +1,10 @@
-import Sidebar from '@/components/layout/sidebar';
+import { AppSidebar } from '@/components/layout/sidebar';
+import DashboardTitle from '@/components/layout/sidebar-trigger';
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from '@/components/ui/sidebar';
 
 export default function RootLayout({
   children,
@@ -6,11 +12,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex h-screen bg-gray-50">
-      <Sidebar userRole="admin" />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
-      </div>
-    </div>
+    <SidebarProvider>
+      <AppSidebar userRole="admin" />
+      <SidebarInset>
+        <main className="flex-1 overflow-y-auto p-6">
+          <DashboardTitle>
+            <SidebarTrigger className="mt-1" />
+          </DashboardTitle>
+          {children}
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

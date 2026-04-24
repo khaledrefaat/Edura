@@ -18,7 +18,6 @@ type FormInputProps<T extends FieldValues> = {
   placeholder?: string;
   type?: string;
   icon?: LucideIcon;
-  className?: string;
 };
 
 export default function FormInput<T extends FieldValues>({
@@ -28,7 +27,6 @@ export default function FormInput<T extends FieldValues>({
   placeholder,
   type = 'text',
   icon: Icon,
-  className,
 }: FormInputProps<T>) {
   return (
     <FormField

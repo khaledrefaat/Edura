@@ -3,7 +3,7 @@
 import { CheckCircle, Eye, Mail, XCircle } from 'lucide-react';
 import TableCell from '@/components/common/TableCell';
 import TableHeadCell from '@/components/common/TableHeadCell';
-import TablePagination from '@/components/table-pagination';
+import TablePagination from '@/components/common/TablePagination';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableHeader, TableRow } from '@/components/ui/table';
 

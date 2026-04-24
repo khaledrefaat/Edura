@@ -1,16 +1,92 @@
-import { GraduationCap } from 'lucide-react';
-import SidebarNav from './sidebar-nav';
+'use client';
 
-interface SidebarProps {
+import {
+  BookOpen,
+  Calendar,
+  GraduationCap,
+  LayoutDashboard,
+  LogOut,
+  UserCircle,
+  Users,
+} from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
+
+interface AppSidebarProps {
   userRole: UserRole;
 }
 
-export default function Sidebar({ userRole }: SidebarProps) {
+const allMenuItems = {
+  admin: [
+    { id: 'dashboard', href: '/', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'users', href: '/users', label: 'User Management', icon: Users },
+    {
+      id: 'courses',
+      href: '/courses',
+      label: 'Course Management',
+      icon: BookOpen,
+    },
+  ],
+  teacher: [
+    {
+      id: 'teacher-profile',
+      href: '/teacher/1/profile',
+      label: 'My Profile',
+      icon: UserCircle,
+    },
+    {
+      id: 'teacher-schedule-page',
+      href: '/teacher/1/schedule',
+      label: 'My Schedule',
+      icon: Calendar,
+    },
+    {
+      id: 'courses',
+      href: '/teacher/1/courses',
+      label: 'My Courses',
+      icon: BookOpen,
+    },
+  ],
+  student: [
+    {
+      id: 'student-profile',
+      href: '/student/profile',
+      label: 'My Profile',
+      icon: UserCircle,
+    },
+    {
+      id: 'student-schedule-page',
+      href: '/student/schedule',
+      label: 'My Schedule',
+      icon: Calendar,
+    },
+    {
+      id: 'student-calendar',
+      href: '/student/calendar',
+      label: 'Class Calendar',
+      icon: Calendar,
+    },
+  ],
+} as const;
+
+export function AppSidebar({ userRole }: AppSidebarProps) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const items = allMenuItems[userRole];
+
   return (
-    <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
-      {/* Logo */}
-      <div className="p-6 border-b border-gray-100">
-        <div className="flex items-center gap-3">
+    <Sidebar>
+      <SidebarHeader className="border-b border-gray-100">
+        <div className="flex items-center gap-3 px-2 py-2">
           <div className="w-10 h-10 bg-[#D4AF37] rounded-xl flex items-center justify-center shadow-md">
             <GraduationCap className="w-6 h-6 text-white" />
           </div>
@@ -21,17 +97,46 @@ export default function Sidebar({ userRole }: SidebarProps) {
             </p>
           </div>
         </div>
-      </div>
+      </SidebarHeader>
 
-      {/* Navigation */}
-      <nav className="flex-1 p-4">
-        <SidebarNav userRole={userRole} />
-      </nav>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => {
+                const Icon = item.icon;
+                const isActive =
+                  pathname === item.href ||
+                  pathname.startsWith(`${item.href}/`);
+                return (
+                  <SidebarMenuItem key={item.id} className="gap-4">
+                    <SidebarMenuButton
+                      isActive={isActive}
+                      onClick={() => router.push(item.href)}
+                      className="cursor-pointer"
+                    >
+                      <Icon
+                        className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-700'}`}
+                      />
+                      <span>{item.label}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
 
-      {/* Version Info */}
-      <div className="p-4 border-t border-gray-100">
-        <p className="text-xs text-gray-400 text-center">Version 1.0.0</p>
+      <div className="mt-auto p-4">
+        <button
+          type="button"
+          aria-label="logout"
+          className="p-3 rounded-full border border-primary w-max mx-auto cursor-pointer"
+        >
+          <LogOut className="w-5 h-5 text-primary" />
+        </button>
       </div>
-    </div>
+    </Sidebar>
   );
 }

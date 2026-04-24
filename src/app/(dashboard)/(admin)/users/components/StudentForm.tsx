@@ -3,8 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import CustomButton from '@/components/custom-button';
-import FormInput from '@/components/form-input';
+import CustomButton from '@/components/common/CustomButton';
+import FormInput from '@/components/common/FormInput';
 import { DialogFooter } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
 

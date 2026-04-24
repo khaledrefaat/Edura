@@ -2,7 +2,7 @@
 
 import { User, UserCheck, UserCog, UserPlus } from 'lucide-react';
 import { useState } from 'react';
-import CustomButton from '@/components/custom-button';
+import CustomButton from '@/components/common/CustomButton';
 import {
   Dialog,
   DialogContent,
