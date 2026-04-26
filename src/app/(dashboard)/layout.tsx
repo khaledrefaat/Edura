@@ -15,10 +15,10 @@ export default function RootLayout({
     <SidebarProvider>
       <AppSidebar userRole="teacher" />
       <SidebarInset>
-        <main className="flex-1 overflow-y-auto p-6">
-          <DashboardTitle>
-            <SidebarTrigger className="mt-1" />
-          </DashboardTitle>
+        <DashboardTitle>
+          <SidebarTrigger className="mt-1" />
+        </DashboardTitle>
+        <main className="flex-1 overflow-y-auto p-6 bg-gray-50">
           {children}
         </main>
       </SidebarInset>

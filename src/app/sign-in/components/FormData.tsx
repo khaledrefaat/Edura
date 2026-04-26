@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import CustomButton from '@/components/common/CustomButton';
 import FormInput from '@/components/common/FormInput';
-import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormField } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';

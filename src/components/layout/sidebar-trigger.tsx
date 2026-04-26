@@ -60,12 +60,10 @@ export default function DashboardTitle({ children }: DashboardTitleProps) {
   const matched = matchPath(pathname);
 
   return (
-    <div className="flex gap-x-4 mb-4 w-full border-b border-primary pb-4">
+    <div className="flex gap-x-4 w-full border-b border-primary px-6 py-4">
       {children}
       <div>
-        <h1 className="text-3xl">
-          {matched?.title || 'Dashboard'}
-        </h1>
+        <h1 className="text-3xl">{matched?.title || 'Dashboard'}</h1>
         {matched?.description && (
           <p className="text-gray-600">{matched.description}</p>
         )}
