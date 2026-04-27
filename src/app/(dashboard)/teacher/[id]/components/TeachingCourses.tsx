@@ -20,11 +20,9 @@ export function TeachingCourses({ courses }: TeachingCoursesProps) {
             className="flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:border-[#D4AF37] transition-colors"
           >
             <div>
-              <h3 className="font-medium text-gray-900 mb-1">
-                {course.title}
-              </h3>
+              <h3 className="font-medium text-gray-900 mb-1">{course.title}</h3>
               <p className="text-sm text-gray-600">
-                {course.students} student{course.students !== 1 ? 's' : ''}{' '}
+                {course.students} student{course.students !== 1 ? "s" : ""}{" "}
                 &bull; {course.schedule}
               </p>
             </div>

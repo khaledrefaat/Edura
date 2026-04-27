@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   Pagination,
   PaginationContent,
@@ -8,7 +8,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination';
+} from "@/components/ui/pagination";
 
 interface TablePaginationProps {
   totalItems: number;
@@ -19,16 +19,16 @@ interface TablePaginationProps {
 export default function TablePagination({
   totalItems,
   itemsPerPage,
-  label = 'items',
+  label = "items",
 }: TablePaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const currentPage = Number(searchParams.get("page")) || 1;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
-    params.set('page', pageNumber.toString());
+    params.set("page", pageNumber.toString());
     return `${pathname}?${params.toString()}`;
   };
 
@@ -40,8 +40,8 @@ export default function TablePagination({
   return (
     <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
       <p className="text-sm text-gray-600">
-        Showing <span className="font-medium">{startItem}</span> to{' '}
-        <span className="font-medium">{endItem}</span> of{' '}
+        Showing <span className="font-medium">{startItem}</span> to{" "}
+        <span className="font-medium">{endItem}</span> of{" "}
         <span className="font-medium">{totalItems}</span> {label}
       </p>
 
@@ -50,9 +50,9 @@ export default function TablePagination({
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious
-                href={currentPage > 1 ? createPageURL(currentPage - 1) : '#'}
+                href={currentPage > 1 ? createPageURL(currentPage - 1) : "#"}
                 className={
-                  currentPage <= 1 ? 'pointer-events-none opacity-50' : ''
+                  currentPage <= 1 ? "pointer-events-none opacity-50" : ""
                 }
               />
             </PaginationItem>
@@ -73,12 +73,12 @@ export default function TablePagination({
                 href={
                   currentPage < totalPages
                     ? createPageURL(currentPage + 1)
-                    : '#'
+                    : "#"
                 }
                 className={
                   currentPage >= totalPages
-                    ? 'pointer-events-none opacity-50'
-                    : ''
+                    ? "pointer-events-none opacity-50"
+                    : ""
                 }
               />
             </PaginationItem>

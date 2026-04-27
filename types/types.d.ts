@@ -1,1 +1,1 @@
-type UserRole = 'admin' | 'teacher' | 'student';
+type UserRole = "admin" | "teacher" | "student";

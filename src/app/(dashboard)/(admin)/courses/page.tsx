@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
-import FiltersBar from '@/components/common/FiltersBar';
-import courses from '@/DUMMY_DATA/COURSES';
-import AddCoursesModal from './components/AddCoursesModal';
-import CoursesTable from './components/CoursesTable';
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import FiltersBar from "@/components/common/FiltersBar";
+import courses from "@/DUMMY_DATA/COURSES";
+import AddCoursesModal from "./components/AddCoursesModal";
+import CoursesTable from "./components/CoursesTable";
 
 function CourseManagementContent() {
   const searchParams = useSearchParams();
-  const searchTerm = searchParams.get('search') ?? '';
-  const filterType = searchParams.get('type') ?? 'All';
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const searchTerm = searchParams.get("search") ?? "";
+  const filterType = searchParams.get("type") ?? "All";
+  const currentPage = Number(searchParams.get("page")) || 1;
   const itemsPerPage = 5;
 
   const filteredCourses = courses.filter((course) => {
     const matchesSearch =
       course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       course.teacher.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterType === 'All' || course.type === filterType;
+    const matchesFilter = filterType === "All" || course.type === filterType;
     return matchesSearch && matchesFilter;
   });
 
@@ -47,9 +47,9 @@ function CourseManagementContent() {
         searchPlaceholder="Search courses by title or teacher..."
         filterKey="type"
         filterOptions={[
-          { value: 'All', label: 'All Courses' },
-          { value: 'Group', label: 'Group' },
-          { value: 'Private', label: 'Private' },
+          { value: "All", label: "All Courses" },
+          { value: "Group", label: "Group" },
+          { value: "Private", label: "Private" },
         ]}
       />
 

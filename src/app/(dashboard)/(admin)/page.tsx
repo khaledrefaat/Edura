@@ -1,6 +1,6 @@
-import { RecentActivity } from './components/recent-activity';
-import { StatisticsCards } from './components/statistics-cards';
-import { UpcomingClasses } from './components/upcoming-classes';
+import { RecentActivity } from "./components/recent-activity";
+import { StatisticsCards } from "./components/statistics-cards";
+import { UpcomingClasses } from "./components/upcoming-classes";
 
 export default function Home() {
   return (

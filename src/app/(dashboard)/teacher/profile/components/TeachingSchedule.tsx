@@ -1,46 +1,46 @@
-import { CalendarIcon, Users, Video } from 'lucide-react';
-import Link from 'next/link';
+import { CalendarIcon, Users, Video } from "lucide-react";
+import Link from "next/link";
 
 const schedule = [
   {
     id: 1,
-    course: 'Advanced Mathematics',
-    date: 'Today',
-    time: '10:00 AM - 11:30 AM',
+    course: "Advanced Mathematics",
+    date: "Today",
+    time: "10:00 AM - 11:30 AM",
     students: 24,
-    room: 'Room A-101',
-    zoomLink: 'https://zoom.us/j/teacher123',
-    status: 'upcoming',
+    room: "Room A-101",
+    zoomLink: "https://zoom.us/j/teacher123",
+    status: "upcoming",
   },
   {
     id: 2,
-    course: 'Private Tutoring - Algebra',
-    date: 'Today',
-    time: '2:00 PM - 3:00 PM',
+    course: "Private Tutoring - Algebra",
+    date: "Today",
+    time: "2:00 PM - 3:00 PM",
     students: 1,
-    room: 'Online',
-    zoomLink: 'https://zoom.us/j/teacher456',
-    status: 'upcoming',
+    room: "Online",
+    zoomLink: "https://zoom.us/j/teacher456",
+    status: "upcoming",
   },
   {
     id: 3,
-    course: 'Advanced Mathematics',
-    date: 'Tomorrow',
-    time: '10:00 AM - 11:30 AM',
+    course: "Advanced Mathematics",
+    date: "Tomorrow",
+    time: "10:00 AM - 11:30 AM",
     students: 24,
-    room: 'Room A-101',
-    zoomLink: 'https://zoom.us/j/teacher123',
-    status: 'scheduled',
+    room: "Room A-101",
+    zoomLink: "https://zoom.us/j/teacher123",
+    status: "scheduled",
   },
   {
     id: 4,
-    course: 'Calculus Workshop',
-    date: 'Wednesday',
-    time: '1:00 PM - 2:30 PM',
+    course: "Calculus Workshop",
+    date: "Wednesday",
+    time: "1:00 PM - 2:30 PM",
     students: 18,
-    room: 'Room B-205',
-    zoomLink: 'https://zoom.us/j/teacher789',
-    status: 'scheduled',
+    room: "Room B-205",
+    zoomLink: "https://zoom.us/j/teacher789",
+    status: "scheduled",
   },
 ];
 
@@ -65,7 +65,7 @@ export function TeachingSchedule() {
                   <span className="flex items-center gap-1">
                     <Users className="w-3 h-3" />
                     {classItem.students} student
-                    {classItem.students !== 1 ? 's' : ''}
+                    {classItem.students !== 1 ? "s" : ""}
                   </span>
                   <span>•</span>
                   <span>{classItem.room}</span>

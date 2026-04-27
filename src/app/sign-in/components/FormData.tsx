@@ -2,13 +2,20 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AtSign, LockKeyhole } from 'lucide-react';
+import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import CustomButton from '@/components/common/CustomButton';
 import FormInput from '@/components/common/FormInput';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Form, FormField } from '@/components/ui/form';
-import { Label } from '@/components/ui/label';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from '@/components/ui/form';
+import { type SignInState, signIn } from '../actions';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -18,7 +25,10 @@ const formSchema = z.object({
   rememberMe: z.boolean(),
 });
 
-export default function FormData() {
+export default function SignInForm() {
+  const [serverState, setServerState] = useState<SignInState>({});
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,14 +38,21 @@ export default function FormData() {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    // Handle form submission
-  };
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    const formData = new FormData();
+    formData.append('email', values.email);
+    formData.append('password', values.password);
+    formData.append('rememberMe', values.rememberMe ? 'on' : 'off');
+
+    startTransition(async () => {
+      const result = await signIn(formData);
+      setServerState(result);
+    });
+  }
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-      <Form {...form}>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         <FormInput
           control={form.control}
           name="email"
@@ -49,36 +66,41 @@ export default function FormData() {
           control={form.control}
           name="password"
           label="Password"
-          type="password"
           placeholder="Enter your password"
           icon={LockKeyhole}
+          showPasswordToggle
         />
 
-        {/* Remember Me */}
         <FormField
           control={form.control}
           name="rememberMe"
           render={({ field }) => (
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center cursor-pointer gap-2">
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  id="checkbox"
-                />
-                <Label htmlFor="checkbox" className="text-gray-600">
+            <FormItem>
+              <div className="flex items-center gap-2">
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel className="text-gray-600 cursor-pointer">
                   Remember me
-                </Label>
+                </FormLabel>
               </div>
-            </div>
+            </FormItem>
           )}
         />
 
-        {/* Sign In Button */}
-        <CustomButton type="submit" variant="primary">
+        {serverState.message && (
+          <p className="text-sm text-red-500 text-center">
+            {serverState.message}
+          </p>
+        )}
+
+        <CustomButton type="submit" variant="primary" loading={isPending}>
           Sign In
         </CustomButton>
-      </Form>
-    </form>
+      </form>
+    </Form>
   );
 }

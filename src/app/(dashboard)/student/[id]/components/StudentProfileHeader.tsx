@@ -1,4 +1,4 @@
-import { Mail, Phone, Calendar, BookOpen } from 'lucide-react';
+import { Mail, Phone, Calendar, BookOpen } from "lucide-react";
 
 interface StudentProfileHeaderProps {
   student: {
@@ -13,10 +13,10 @@ interface StudentProfileHeaderProps {
 
 export function StudentProfileHeader({ student }: StudentProfileHeaderProps) {
   const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    return new Date(dateStr).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 

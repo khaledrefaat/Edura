@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { BookOpen, Eye } from 'lucide-react';
-import TableCell from '@/components/common/TableCell';
-import TableHeadCell from '@/components/common/TableHeadCell';
-import TablePagination from '@/components/common/TablePagination';
-import { Badge } from '@/components/ui/badge';
-import { Table, TableBody, TableHeader, TableRow } from '@/components/ui/table';
+import { BookOpen, Eye } from "lucide-react";
+import TableCell from "@/components/common/TableCell";
+import TableHeadCell from "@/components/common/TableHeadCell";
+import TablePagination from "@/components/common/TablePagination";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
 
 type Course = {
   id: string;
@@ -100,9 +100,9 @@ function TypeBadge({ type }: { type: string }) {
   return (
     <Badge
       className={
-        type === 'Group'
-          ? 'bg-blue-100 text-blue-700'
-          : 'bg-purple-100 text-purple-700'
+        type === "Group"
+          ? "bg-blue-100 text-blue-700"
+          : "bg-purple-100 text-purple-700"
       }
     >
       {type}

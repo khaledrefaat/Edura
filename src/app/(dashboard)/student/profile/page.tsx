@@ -1,9 +1,11 @@
-import { MyCourses } from './components/MyCourses';
-import { StudentProfileHeader } from './components/StudentProfileHeader';
-import { StudentStatsCards } from './components/StudentStatsCards';
-import { UpcomingClasses } from './components/UpcomingClasses';
+import { requireRole } from '@/lib/dal';
+import { MyCourses } from "./components/MyCourses";
+import { StudentProfileHeader } from "./components/StudentProfileHeader";
+import { StudentStatsCards } from "./components/StudentStatsCards";
+import { UpcomingClasses } from "./components/UpcomingClasses";
 
-export default function Page() {
+export default async function Page() {
+  await requireRole('student');
   return (
     <div className="space-y-6">
       <StudentProfileHeader />

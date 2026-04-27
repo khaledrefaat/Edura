@@ -1,23 +1,23 @@
-import { Award, BookOpen, TrendingUp } from 'lucide-react';
+import { Award, BookOpen, TrendingUp } from "lucide-react";
 
 const stats = [
   {
-    label: 'Enrolled Courses',
-    value: '5',
+    label: "Enrolled Courses",
+    value: "5",
     icon: BookOpen,
-    color: 'bg-blue-500',
+    color: "bg-blue-500",
   },
   {
-    label: 'Attendance Rate',
-    value: '94%',
+    label: "Attendance Rate",
+    value: "94%",
     icon: TrendingUp,
-    color: 'bg-green-500',
+    color: "bg-green-500",
   },
   {
-    label: 'Completed',
-    value: '12',
+    label: "Completed",
+    value: "12",
     icon: Award,
-    color: 'bg-purple-500',
+    color: "bg-purple-500",
   },
 ];
 

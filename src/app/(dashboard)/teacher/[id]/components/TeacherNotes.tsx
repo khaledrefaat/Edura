@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Edit2, Save, X } from 'lucide-react';
-import { useState } from 'react';
+import { Edit2, Save, X } from "lucide-react";
+import { useState } from "react";
 
 interface TeacherNotesProps {
   initialNotes: string;
@@ -66,7 +66,7 @@ export function TeacherNotes({ initialNotes }: TeacherNotesProps) {
         />
       ) : (
         <div className="text-gray-700 whitespace-pre-wrap bg-gray-50 p-4 rounded-xl min-h-[160px]">
-          {notes || 'No notes added yet.'}
+          {notes || "No notes added yet."}
         </div>
       )}
     </div>

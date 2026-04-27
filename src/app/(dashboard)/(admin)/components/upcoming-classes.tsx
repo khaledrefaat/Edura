@@ -1,32 +1,34 @@
-import { Calendar } from 'lucide-react';
+import { Calendar } from "lucide-react";
 
 const upcomingClasses = [
   {
     id: 1,
-    title: 'Advanced Mathematics',
-    teacher: 'Dr. Sarah Johnson',
-    time: '10:00 AM',
+    title: "Advanced Mathematics",
+    teacher: "Dr. Sarah Johnson",
+    time: "10:00 AM",
     students: 24,
   },
   {
     id: 2,
-    title: 'Physics Laboratory',
-    teacher: 'Prof. Michael Chen',
-    time: '11:30 AM',
+    title: "Physics Laboratory",
+    teacher: "Prof. Michael Chen",
+    time: "11:30 AM",
     students: 18,
   },
   {
     id: 3,
-    title: 'English Literature',
-    teacher: 'Ms. Emily Davis',
-    time: '2:00 PM',
+    title: "English Literature",
+    teacher: "Ms. Emily Davis",
+    time: "2:00 PM",
     students: 30,
   },
 ];
 
 function ClassCard({
   classItem,
-}: { classItem: (typeof upcomingClasses)[number] }) {
+}: {
+  classItem: (typeof upcomingClasses)[number];
+}) {
   return (
     <div className="p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
       <div className="flex items-start justify-between mb-2">

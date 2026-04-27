@@ -1,29 +1,29 @@
-import { BookOpen, GraduationCap, TrendingUp, Users } from 'lucide-react';
+import { BookOpen, GraduationCap, TrendingUp, Users } from "lucide-react";
 
 const stats = [
   {
     id: 1,
-    title: 'Total Students',
-    value: '2,847',
-    change: '+12.5%',
+    title: "Total Students",
+    value: "2,847",
+    change: "+12.5%",
     icon: GraduationCap,
-    color: 'bg-blue-500',
+    color: "bg-blue-500",
   },
   {
     id: 2,
-    title: 'Total Teachers',
-    value: '142',
-    change: '+3.2%',
+    title: "Total Teachers",
+    value: "142",
+    change: "+3.2%",
     icon: Users,
-    color: 'bg-green-500',
+    color: "bg-green-500",
   },
   {
     id: 3,
-    title: 'Total Courses',
-    value: '68',
-    change: '+8.1%',
+    title: "Total Courses",
+    value: "68",
+    change: "+8.1%",
     icon: BookOpen,
-    color: 'bg-purple-500',
+    color: "bg-purple-500",
   },
 ];
 

@@ -1,40 +1,40 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import type { ReactNode } from 'react';
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
 
 const pageHeaders = {
-  '/': {
-    title: 'Dashboard',
+  "/": {
+    title: "Dashboard",
     description: "Welcome back! Here's what's happening today.",
   },
-  '/users': {
-    title: 'User Management',
-    description: 'Manage teachers and students in the system',
+  "/users": {
+    title: "User Management",
+    description: "Manage teachers and students in the system",
   },
-  '/courses': {
-    title: 'Course Management',
-    description: 'Manage all courses and class schedules',
+  "/courses": {
+    title: "Course Management",
+    description: "Manage all courses and class schedules",
   },
-  '/student/profile': {
-    title: 'Profile',
-    description: 'Manage your profile',
+  "/student/profile": {
+    title: "Profile",
+    description: "Manage your profile",
   },
-  '/student/schedule': {
-    title: 'My Schedule',
-    description: 'View all your upcoming classes',
+  "/student/schedule": {
+    title: "My Schedule",
+    description: "View all your upcoming classes",
   },
-  '/teacher/profile': {
-    title: 'Profile',
-    description: 'Manage your profile',
+  "/teacher/profile": {
+    title: "Profile",
+    description: "Manage your profile",
   },
-  '/teacher/schedule': {
-    title: 'My Teaching Schedule',
-    description: 'View all your teaching sessions',
+  "/teacher/schedule": {
+    title: "My Teaching Schedule",
+    description: "View all your teaching sessions",
   },
-  '/teacher/courses': {
-    title: 'Course Management',
-    description: 'Manage all courses and class schedules',
+  "/teacher/courses": {
+    title: "Course Management",
+    description: "Manage all courses and class schedules",
   },
 };
 
@@ -63,7 +63,7 @@ export default function DashboardTitle({ children }: DashboardTitleProps) {
     <div className="flex gap-x-4 w-full border-b border-primary px-6 py-4">
       {children}
       <div>
-        <h1 className="text-3xl">{matched?.title || 'Dashboard'}</h1>
+        <h1 className="text-3xl">{matched?.title || "Dashboard"}</h1>
         {matched?.description && (
           <p className="text-gray-600">{matched.description}</p>
         )}

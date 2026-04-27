@@ -1,50 +1,50 @@
-import { Video } from 'lucide-react';
+import { Video } from "lucide-react";
 
 const sessions = [
   {
-    id: '1',
-    courseTitle: 'Advanced Mathematics',
+    id: "1",
+    courseTitle: "Advanced Mathematics",
     students: 24,
-    date: 'Today',
-    time: '10:00 AM - 11:30 AM',
-    zoomLink: 'https://zoom.us/j/123456789',
-    status: 'scheduled',
+    date: "Today",
+    time: "10:00 AM - 11:30 AM",
+    zoomLink: "https://zoom.us/j/123456789",
+    status: "scheduled",
   },
   {
-    id: '2',
-    courseTitle: 'Private Tutoring - Algebra',
+    id: "2",
+    courseTitle: "Private Tutoring - Algebra",
     students: 1,
-    date: 'Today',
-    time: '3:00 PM - 4:00 PM',
-    zoomLink: 'https://zoom.us/j/987654321',
-    status: 'scheduled',
+    date: "Today",
+    time: "3:00 PM - 4:00 PM",
+    zoomLink: "https://zoom.us/j/987654321",
+    status: "scheduled",
   },
   {
-    id: '3',
-    courseTitle: 'Advanced Mathematics',
+    id: "3",
+    courseTitle: "Advanced Mathematics",
     students: 24,
-    date: 'Tomorrow',
-    time: '10:00 AM - 11:30 AM',
-    zoomLink: 'https://zoom.us/j/123456789',
-    status: 'scheduled',
+    date: "Tomorrow",
+    time: "10:00 AM - 11:30 AM",
+    zoomLink: "https://zoom.us/j/123456789",
+    status: "scheduled",
   },
   {
-    id: '4',
-    courseTitle: 'Private Tutoring - Algebra',
+    id: "4",
+    courseTitle: "Private Tutoring - Algebra",
     students: 1,
-    date: 'Wednesday',
-    time: '3:00 PM - 4:00 PM',
-    zoomLink: 'https://zoom.us/j/987654321',
-    status: 'scheduled',
+    date: "Wednesday",
+    time: "3:00 PM - 4:00 PM",
+    zoomLink: "https://zoom.us/j/987654321",
+    status: "scheduled",
   },
   {
-    id: '5',
-    courseTitle: 'Calculus Workshop',
+    id: "5",
+    courseTitle: "Calculus Workshop",
     students: 18,
-    date: 'Friday',
-    time: '1:00 PM - 2:30 PM',
-    zoomLink: 'https://zoom.us/j/teacher789',
-    status: 'scheduled',
+    date: "Friday",
+    time: "1:00 PM - 2:30 PM",
+    zoomLink: "https://zoom.us/j/teacher789",
+    status: "scheduled",
   },
 ];
 
@@ -54,7 +54,7 @@ export function UpcomingSessions() {
       <h2 className="text-xl mb-6">Upcoming Sessions</h2>
       <div className="space-y-3">
         {sessions
-          .filter((s) => s.status === 'scheduled')
+          .filter((s) => s.status === "scheduled")
           .map((session) => (
             <div
               key={session.id}
@@ -72,7 +72,7 @@ export function UpcomingSessions() {
                   <span>•</span>
                   <span>
                     {session.students} student
-                    {session.students !== 1 ? 's' : ''}
+                    {session.students !== 1 ? "s" : ""}
                   </span>
                 </div>
               </div>

@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { X } from 'lucide-react';
-import { useState } from 'react';
+import { X } from "lucide-react";
+import { useState } from "react";
 
 interface AddCourseModalProps {
   onClose: () => void;
   onAdd: (courseData: {
     title: string;
     description: string;
-    type: 'Group' | 'Private';
+    type: "Group" | "Private";
     teacher: string;
     selectedStudents: string[];
     schedule: {
@@ -23,25 +23,25 @@ interface AddCourseModalProps {
 }
 
 const daysOfWeekOptions = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
 ];
 
 export function AddCourseModal({ onClose, onAdd }: AddCourseModalProps) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [type, setType] = useState<'Group' | 'Private'>('Group');
-  const [teacher, setTeacher] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [type, setType] = useState<"Group" | "Private">("Group");
+  const [teacher, setTeacher] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   const toggleDay = (day: string) => {
     setSelectedDays((prev) =>
@@ -113,9 +113,7 @@ export function AddCourseModal({ onClose, onAdd }: AddCourseModalProps) {
               <label className="block text-sm text-gray-700 mb-1">Type</label>
               <select
                 value={type}
-                onChange={(e) =>
-                  setType(e.target.value as 'Group' | 'Private')
-                }
+                onChange={(e) => setType(e.target.value as "Group" | "Private")}
                 className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
               >
                 <option value="Group">Group</option>
@@ -198,8 +196,8 @@ export function AddCourseModal({ onClose, onAdd }: AddCourseModalProps) {
                   onClick={() => toggleDay(day)}
                   className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
                     selectedDays.includes(day)
-                      ? 'bg-[#D4AF37] text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? "bg-[#D4AF37] text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
                   {day.slice(0, 3)}

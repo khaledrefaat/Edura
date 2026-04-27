@@ -1,23 +1,23 @@
-import { BookOpen, Clock, Users } from 'lucide-react';
+import { BookOpen, Clock, Users } from "lucide-react";
 
 const stats = [
   {
-    label: 'Active Courses',
-    value: '4',
+    label: "Active Courses",
+    value: "4",
     icon: BookOpen,
-    color: 'bg-blue-500',
+    color: "bg-blue-500",
   },
   {
-    label: 'Total Students',
-    value: '87',
+    label: "Total Students",
+    value: "87",
     icon: Users,
-    color: 'bg-green-500',
+    color: "bg-green-500",
   },
   {
-    label: 'Classes This Week',
-    value: '12',
+    label: "Classes This Week",
+    value: "12",
     icon: Clock,
-    color: 'bg-purple-500',
+    color: "bg-purple-500",
   },
 ];
 

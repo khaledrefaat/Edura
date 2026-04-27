@@ -1,4 +1,4 @@
-import { BookOpen, Mail, Phone } from 'lucide-react';
+import { BookOpen, Mail, Phone } from "lucide-react";
 
 interface TeacherProfileHeaderProps {
   teacher: {

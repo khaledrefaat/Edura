@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { Search } from 'lucide-react';
+import { Search } from "lucide-react";
 
 interface CoursesFiltersProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
-  filterType: 'All' | 'Group' | 'Private';
-  onFilterChange: (value: 'All' | 'Group' | 'Private') => void;
+  filterType: "All" | "Group" | "Private";
+  onFilterChange: (value: "All" | "Group" | "Private") => void;
 }
 
 export function CoursesFilters({
@@ -31,33 +31,33 @@ export function CoursesFilters({
 
         <div className="flex gap-2">
           <button
-            onClick={() => onFilterChange('All')}
+            onClick={() => onFilterChange("All")}
             className={`px-4 py-2.5 rounded-xl transition-colors ${
-              filterType === 'All'
-                ? 'bg-[#D4AF37] text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              filterType === "All"
+                ? "bg-[#D4AF37] text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
             type="button"
           >
             All Courses
           </button>
           <button
-            onClick={() => onFilterChange('Group')}
+            onClick={() => onFilterChange("Group")}
             className={`px-4 py-2.5 rounded-xl transition-colors ${
-              filterType === 'Group'
-                ? 'bg-blue-600 text-white'
-                : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+              filterType === "Group"
+                ? "bg-blue-600 text-white"
+                : "bg-blue-100 text-blue-700 hover:bg-blue-200"
             }`}
             type="button"
           >
             Group
           </button>
           <button
-            onClick={() => onFilterChange('Private')}
+            onClick={() => onFilterChange("Private")}
             className={`px-4 py-2.5 rounded-xl transition-colors ${
-              filterType === 'Private'
-                ? 'bg-purple-600 text-white'
-                : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+              filterType === "Private"
+                ? "bg-purple-600 text-white"
+                : "bg-purple-100 text-purple-700 hover:bg-purple-200"
             }`}
             type="button"
           >

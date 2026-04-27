@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
-import FiltersBar from '@/components/common/FiltersBar';
-import users from '@/DUMMY_DATA/USERS';
-import AddUserModal from './components/AddUserModal';
-import UsersTable from './components/UsersTable';
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import FiltersBar from "@/components/common/FiltersBar";
+import users from "@/DUMMY_DATA/USERS";
+import AddUserModal from "./components/AddUserModal";
+import UsersTable from "./components/UsersTable";
 
 function UserManagementContent() {
   const searchParams = useSearchParams();
-  const searchTerm = searchParams.get('search') ?? '';
-  const filterRole = searchParams.get('role') ?? 'All';
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const searchTerm = searchParams.get("search") ?? "";
+  const filterRole = searchParams.get("role") ?? "All";
+  const currentPage = Number(searchParams.get("page")) || 1;
   const itemsPerPage = 5;
 
   const filteredUsers = users.filter((user) => {
     const matchesSearch =
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterRole === 'All' || user.role === filterRole;
+    const matchesFilter = filterRole === "All" || user.role === filterRole;
     return matchesSearch && matchesFilter;
   });
 
@@ -47,9 +47,9 @@ function UserManagementContent() {
         searchPlaceholder="Search by name or email..."
         filterKey="role"
         filterOptions={[
-          { value: 'All', label: 'All Roles' },
-          { value: 'Teacher', label: 'Teachers' },
-          { value: 'Student', label: 'Students' },
+          { value: "All", label: "All Roles" },
+          { value: "Teacher", label: "Teachers" },
+          { value: "Student", label: "Students" },
         ]}
       />
 

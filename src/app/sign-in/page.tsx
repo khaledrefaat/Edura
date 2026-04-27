@@ -1,4 +1,4 @@
-import FormData from './components/FormData';
+import SignInForm from "./components/FormData";
 
 export default function page() {
   return (
@@ -32,7 +32,7 @@ export default function page() {
             Sign in to your account to continue
           </p>
 
-          <FormData />
+          <SignInForm />
 
           {/* Demo Credentials */}
           <div className="mt-6 pt-6 border-t border-gray-100">

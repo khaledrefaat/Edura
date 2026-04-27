@@ -1,37 +1,37 @@
-import { Calendar, Video } from 'lucide-react';
+import { Calendar, Video } from "lucide-react";
 
 const schedule = [
   {
     id: 1,
-    course: 'Advanced Mathematics',
-    teacher: 'Dr. Sarah Johnson',
-    date: 'Today',
-    time: '10:00 AM - 11:30 AM',
-    zoomLink: 'https://zoom.us/j/123456789',
+    course: "Advanced Mathematics",
+    teacher: "Dr. Sarah Johnson",
+    date: "Today",
+    time: "10:00 AM - 11:30 AM",
+    zoomLink: "https://zoom.us/j/123456789",
   },
   {
     id: 2,
-    course: 'Physics Laboratory',
-    teacher: 'Prof. Michael Chen',
-    date: 'Today',
-    time: '2:00 PM - 3:30 PM',
-    zoomLink: 'https://zoom.us/j/987654321',
+    course: "Physics Laboratory",
+    teacher: "Prof. Michael Chen",
+    date: "Today",
+    time: "2:00 PM - 3:30 PM",
+    zoomLink: "https://zoom.us/j/987654321",
   },
   {
     id: 3,
-    course: 'English Literature',
-    teacher: 'Ms. Emily Davis',
-    date: 'Tomorrow',
-    time: '9:00 AM - 10:30 AM',
-    zoomLink: 'https://zoom.us/j/456789123',
+    course: "English Literature",
+    teacher: "Ms. Emily Davis",
+    date: "Tomorrow",
+    time: "9:00 AM - 10:30 AM",
+    zoomLink: "https://zoom.us/j/456789123",
   },
   {
     id: 4,
-    course: 'Computer Science 101',
-    teacher: 'Prof. Michael Chen',
-    date: 'Tomorrow',
-    time: '11:00 AM - 12:30 PM',
-    zoomLink: 'https://zoom.us/j/321654987',
+    course: "Computer Science 101",
+    teacher: "Prof. Michael Chen",
+    date: "Tomorrow",
+    time: "11:00 AM - 12:30 PM",
+    zoomLink: "https://zoom.us/j/321654987",
   },
 ];
 

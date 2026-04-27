@@ -1,8 +1,10 @@
-import { ScheduleCalendar } from './components/ScheduleCalendar';
-import { ScheduleHeader } from './components/ScheduleHeader';
-import { UpcomingSessions } from './components/UpcomingSessions';
+import { requireRole } from '@/lib/dal';
+import { ScheduleCalendar } from "./components/ScheduleCalendar";
+import { ScheduleHeader } from "./components/ScheduleHeader";
+import { UpcomingSessions } from "./components/UpcomingSessions";
 
-export default function Page() {
+export default async function Page() {
+  await requireRole('teacher');
   return (
     <div className="space-y-6">
       <ScheduleHeader />

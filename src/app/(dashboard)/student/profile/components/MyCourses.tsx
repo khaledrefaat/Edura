@@ -1,35 +1,35 @@
-import { BookOpen } from 'lucide-react';
+import { BookOpen } from "lucide-react";
 
 const enrolledCourses = [
   {
     id: 1,
-    title: 'Advanced Mathematics',
+    title: "Advanced Mathematics",
     progress: 75,
-    nextClass: 'Today, 10:00 AM',
+    nextClass: "Today, 10:00 AM",
   },
   {
     id: 2,
-    title: 'Physics Laboratory',
+    title: "Physics Laboratory",
     progress: 60,
-    nextClass: 'Today, 2:00 PM',
+    nextClass: "Today, 2:00 PM",
   },
   {
     id: 3,
-    title: 'English Literature',
+    title: "English Literature",
     progress: 85,
-    nextClass: 'Tomorrow, 9:00 AM',
+    nextClass: "Tomorrow, 9:00 AM",
   },
   {
     id: 4,
-    title: 'Computer Science 101',
+    title: "Computer Science 101",
     progress: 50,
-    nextClass: 'Tomorrow, 11:00 AM',
+    nextClass: "Tomorrow, 11:00 AM",
   },
   {
     id: 5,
-    title: 'Chemistry Basics',
+    title: "Chemistry Basics",
     progress: 40,
-    nextClass: 'Wednesday, 3:00 PM',
+    nextClass: "Wednesday, 3:00 PM",
   },
 ];
 

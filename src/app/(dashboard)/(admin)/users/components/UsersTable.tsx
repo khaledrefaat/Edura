@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { CheckCircle, Eye, Mail, XCircle } from 'lucide-react';
-import TableCell from '@/components/common/TableCell';
-import TableHeadCell from '@/components/common/TableHeadCell';
-import TablePagination from '@/components/common/TablePagination';
-import { Badge } from '@/components/ui/badge';
-import { Table, TableBody, TableHeader, TableRow } from '@/components/ui/table';
+import { CheckCircle, Eye, Mail, XCircle } from "lucide-react";
+import TableCell from "@/components/common/TableCell";
+import TableHeadCell from "@/components/common/TableHeadCell";
+import TablePagination from "@/components/common/TablePagination";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
 
 type User = {
   id: string;
@@ -98,11 +98,11 @@ function CustomBadge({ text, type }: { text: string; type: string }) {
   return (
     <Badge
       className={`${
-        type === 'Student'
-          ? 'bg-blue-100 text-blue-700'
-          : type === 'Admin'
-            ? 'bg-red-100 text-red-700'
-            : 'bg-purple-100 text-purple-700'
+        type === "Student"
+          ? "bg-blue-100 text-blue-700"
+          : type === "Admin"
+            ? "bg-red-100 text-red-700"
+            : "bg-purple-100 text-purple-700"
       }`}
     >
       {text}
@@ -113,7 +113,7 @@ function CustomBadge({ text, type }: { text: string; type: string }) {
 function ActiveCell({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-2">
-      {text === 'Active' ? (
+      {text === "Active" ? (
         <>
           <CheckCircle className="size-4 text-green-500" />
           <span className="text-sm text-green-600">Active</span>

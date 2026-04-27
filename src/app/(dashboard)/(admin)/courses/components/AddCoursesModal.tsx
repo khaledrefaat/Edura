@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Calendar as CalendarIcon, Clock, Plus, Users, X } from 'lucide-react';
-import { useState } from 'react';
-import CustomButton from '@/components/common/CustomButton';
+import { Calendar as CalendarIcon, Clock, Plus, Users, X } from "lucide-react";
+import { useState } from "react";
+import CustomButton from "@/components/common/CustomButton";
 import {
   Dialog,
   DialogContent,
@@ -10,49 +10,49 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 
 const DAYS_OF_WEEK = [
-  { short: 'Mon', full: 'Monday' },
-  { short: 'Tue', full: 'Tuesday' },
-  { short: 'Wed', full: 'Wednesday' },
-  { short: 'Thu', full: 'Thursday' },
-  { short: 'Fri', full: 'Friday' },
-  { short: 'Sat', full: 'Saturday' },
-  { short: 'Sun', full: 'Sunday' },
+  { short: "Mon", full: "Monday" },
+  { short: "Tue", full: "Tuesday" },
+  { short: "Wed", full: "Wednesday" },
+  { short: "Thu", full: "Thursday" },
+  { short: "Fri", full: "Friday" },
+  { short: "Sat", full: "Saturday" },
+  { short: "Sun", full: "Sunday" },
 ];
 
 const AVAILABLE_STUDENTS = [
-  { id: '4', name: 'John Smith', email: 'john.smith@student.edu' },
-  { id: '5', name: 'Emma Wilson', email: 'emma.wilson@student.edu' },
-  { id: '6', name: 'Oliver Brown', email: 'oliver.brown@student.edu' },
-  { id: '7', name: 'Sophia Martinez', email: 'sophia.martinez@student.edu' },
-  { id: '8', name: 'Liam Anderson', email: 'liam.anderson@student.edu' },
+  { id: "4", name: "John Smith", email: "john.smith@student.edu" },
+  { id: "5", name: "Emma Wilson", email: "emma.wilson@student.edu" },
+  { id: "6", name: "Oliver Brown", email: "oliver.brown@student.edu" },
+  { id: "7", name: "Sophia Martinez", email: "sophia.martinez@student.edu" },
+  { id: "8", name: "Liam Anderson", email: "liam.anderson@student.edu" },
 ];
 
-const TEACHERS = ['Dr. Sarah Johnson', 'Prof. Michael Chen', 'Ms. Emily Davis'];
+const TEACHERS = ["Dr. Sarah Johnson", "Prof. Michael Chen", "Ms. Emily Davis"];
 
 export default function AddCoursesModal() {
   const [open, setOpen] = useState(false);
 
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    type: 'Group' as 'Group' | 'Private',
-    teacher: '',
+    title: "",
+    description: "",
+    type: "Group" as "Group" | "Private",
+    teacher: "",
   });
 
   const [schedule, setSchedule] = useState({
-    startDate: '',
-    endDate: '',
+    startDate: "",
+    endDate: "",
     daysOfWeek: [] as string[],
-    startTime: '',
-    endTime: '',
+    startTime: "",
+    endTime: "",
     exceptions: [] as string[],
   });
 
   const [selectedStudents, setSelectedStudents] = useState<string[]>([]);
-  const [studentSearchTerm, setStudentSearchTerm] = useState('');
+  const [studentSearchTerm, setStudentSearchTerm] = useState("");
   const [showStudentDropdown, setShowStudentDropdown] = useState(false);
   const [showExceptionsCalendar, setShowExceptionsCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -120,9 +120,9 @@ export default function AddCoursesModal() {
 
   const renderExceptionsCalendar = () => {
     const { daysInMonth, startingDayOfWeek } = getDaysInMonth(currentMonth);
-    const monthName = currentMonth.toLocaleDateString('en-US', {
-      month: 'long',
-      year: 'numeric',
+    const monthName = currentMonth.toLocaleDateString("en-US", {
+      month: "long",
+      year: "numeric",
     });
     const days = [];
 
@@ -131,7 +131,7 @@ export default function AddCoursesModal() {
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
-      const dateStr = `${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const dateStr = `${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
       const isException = schedule.exceptions.includes(dateStr);
       const isInRange =
         schedule.startDate &&
@@ -147,10 +147,10 @@ export default function AddCoursesModal() {
           disabled={!isInRange}
           className={`p-2 rounded-lg text-sm transition-all ${
             isException
-              ? 'bg-red-500 text-white'
+              ? "bg-red-500 text-white"
               : isInRange
-                ? 'bg-gray-100 hover:bg-[#D4AF37] hover:text-white cursor-pointer'
-                : 'text-gray-300 cursor-not-allowed'
+                ? "bg-gray-100 hover:bg-[#D4AF37] hover:text-white cursor-pointer"
+                : "text-gray-300 cursor-not-allowed"
           }`}
         >
           {day}
@@ -178,7 +178,7 @@ export default function AddCoursesModal() {
           </button>
         </div>
         <div className="grid grid-cols-7 gap-1 mb-2">
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
             <div key={d} className="text-xs text-center text-gray-500 p-1">
               {d}
             </div>
@@ -191,7 +191,7 @@ export default function AddCoursesModal() {
           {schedule.exceptions.length > 0 && (
             <p className="mt-2 text-red-600">
               {schedule.exceptions.length} exception
-              {schedule.exceptions.length !== 1 ? 's' : ''} selected
+              {schedule.exceptions.length !== 1 ? "s" : ""} selected
             </p>
           )}
         </div>
@@ -276,7 +276,7 @@ export default function AddCoursesModal() {
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      type: e.target.value as 'Group' | 'Private',
+                      type: e.target.value as "Group" | "Private",
                     })
                   }
                   className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
@@ -371,8 +371,8 @@ export default function AddCoursesModal() {
                     onClick={() => toggleDayOfWeek(day.short)}
                     className={`py-3 px-2 rounded-xl text-sm transition-all ${
                       schedule.daysOfWeek.includes(day.short)
-                        ? 'bg-[#D4AF37] text-white shadow-md'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? "bg-[#D4AF37] text-white shadow-md"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
                     {day.short}
@@ -381,7 +381,7 @@ export default function AddCoursesModal() {
               </div>
               {schedule.daysOfWeek.length > 0 && (
                 <p className="text-xs text-gray-500 mt-2">
-                  Selected: {schedule.daysOfWeek.join(', ')}
+                  Selected: {schedule.daysOfWeek.join(", ")}
                 </p>
               )}
             </div>
@@ -438,8 +438,8 @@ export default function AddCoursesModal() {
                   className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
                 >
                   {showExceptionsCalendar
-                    ? 'Hide Calendar'
-                    : 'Select Exception Dates'}
+                    ? "Hide Calendar"
+                    : "Select Exception Dates"}
                 </button>
               </div>
               {showExceptionsCalendar && renderExceptionsCalendar()}
@@ -477,12 +477,12 @@ export default function AddCoursesModal() {
                         type="button"
                         onClick={() => {
                           toggleStudent(student.id);
-                          setStudentSearchTerm('');
+                          setStudentSearchTerm("");
                         }}
                         className={`w-full px-4 py-2.5 text-left text-sm transition-colors border-b border-gray-100 last:border-b-0 ${
                           selectedStudents.includes(student.id)
-                            ? 'bg-[#D4AF37]/10 text-[#D4AF37] font-medium'
-                            : 'hover:bg-gray-50'
+                            ? "bg-[#D4AF37]/10 text-[#D4AF37] font-medium"
+                            : "hover:bg-gray-50"
                         }`}
                       >
                         <div>{student.name}</div>

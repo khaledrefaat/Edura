@@ -1,10 +1,10 @@
-import { BookOpen, Eye } from 'lucide-react';
+import { BookOpen, Eye } from "lucide-react";
 
 interface Course {
   id: string;
   title: string;
   description: string;
-  type: 'Group' | 'Private';
+  type: "Group" | "Private";
   teacher: string;
   students: number;
   schedule: string;
@@ -59,9 +59,9 @@ export function CoursesTable({ courses, onViewCourse }: CoursesTableProps) {
                 <td className="px-6 py-4">
                   <span
                     className={`px-3 py-1 rounded-full text-xs ${
-                      course.type === 'Group'
-                        ? 'bg-blue-100 text-blue-700'
-                        : 'bg-purple-100 text-purple-700'
+                      course.type === "Group"
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-purple-100 text-purple-700"
                     }`}
                   >
                     {course.type}

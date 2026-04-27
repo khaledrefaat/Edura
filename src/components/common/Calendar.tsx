@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { ChevronLeft, ChevronRight, Video } from 'lucide-react';
-import { useState } from 'react';
+import { ChevronLeft, ChevronRight, Video } from "lucide-react";
+import { useState } from "react";
 
 interface CalendarEvent {
   id: string;
@@ -12,12 +12,12 @@ interface CalendarEvent {
   zoomLink: string;
   students?: number;
   teacher?: string;
-  type?: 'upcoming' | 'scheduled' | 'completed';
+  type?: "upcoming" | "scheduled" | "completed";
 }
 
 interface CalendarProps {
   events: CalendarEvent[];
-  userRole?: 'teacher' | 'student';
+  userRole?: "teacher" | "student";
 }
 
 export function Calendar({ events }: CalendarProps) {
@@ -27,21 +27,21 @@ export function Calendar({ events }: CalendarProps) {
   );
 
   const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
-  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -108,14 +108,14 @@ export function Calendar({ events }: CalendarProps) {
           key={day}
           className={`aspect-square p-2 rounded-lg border transition-all ${
             today
-              ? 'border-[#D4AF37] bg-[#D4AF37]/5'
+              ? "border-[#D4AF37] bg-[#D4AF37]/5"
               : dayEvents.length > 0
-                ? 'border-gray-200 bg-white hover:border-[#D4AF37]'
-                : 'border-gray-100 bg-white'
+                ? "border-gray-200 bg-white hover:border-[#D4AF37]"
+                : "border-gray-100 bg-white"
           }`}
         >
           <div
-            className={`text-sm mb-1 ${today ? 'text-[#D4AF37]' : 'text-gray-700'}`}
+            className={`text-sm mb-1 ${today ? "text-[#D4AF37]" : "text-gray-700"}`}
           >
             {day}
           </div>
@@ -192,11 +192,11 @@ export function Calendar({ events }: CalendarProps) {
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Date:</span>
                 <span className="text-gray-900">
-                  {selectedEvent.date.toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
+                  {selectedEvent.date.toLocaleDateString("en-US", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
                   })}
                 </span>
               </div>
@@ -235,7 +235,7 @@ export function Calendar({ events }: CalendarProps) {
               </button>
               <button
                 onClick={() => {
-                  window.open(selectedEvent.zoomLink, '_blank');
+                  window.open(selectedEvent.zoomLink, "_blank");
                   setSelectedEvent(null);
                 }}
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-[#D4AF37] text-white rounded-xl hover:bg-[#B8941F] transition-colors shadow-md"

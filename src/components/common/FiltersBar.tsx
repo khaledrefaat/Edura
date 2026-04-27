@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { Search } from 'lucide-react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
-import { Input } from '@/components/ui/input';
+import { Search } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { useDebounce } from '@/hooks/use-debounce';
+} from "@/components/ui/select";
+import { useDebounce } from "@/hooks/use-debounce";
 
 export interface FilterOption {
   value: string;
@@ -25,7 +25,7 @@ interface FiltersBarProps {
 }
 
 export default function FiltersBar({
-  searchPlaceholder = 'Search...',
+  searchPlaceholder = "Search...",
   filterKey,
   filterOptions,
 }: FiltersBarProps) {
@@ -33,8 +33,8 @@ export default function FiltersBar({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentSearch = searchParams.get('search') ?? '';
-  const currentFilter = searchParams.get(filterKey) ?? 'All';
+  const currentSearch = searchParams.get("search") ?? "";
+  const currentFilter = searchParams.get(filterKey) ?? "All";
 
   const [searchInput, setSearchInput] = useState(currentSearch);
   const debouncedSearch = useDebounce(searchInput, 400);
@@ -42,12 +42,12 @@ export default function FiltersBar({
   const updateParams = useCallback(
     (key: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
-      if (value && value !== 'All') {
+      if (value && value !== "All") {
         params.set(key, value);
       } else {
         params.delete(key);
       }
-      params.delete('page');
+      params.delete("page");
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     },
     [router, pathname, searchParams],
@@ -55,7 +55,7 @@ export default function FiltersBar({
 
   useEffect(() => {
     if (debouncedSearch !== currentSearch) {
-      updateParams('search', debouncedSearch);
+      updateParams("search", debouncedSearch);
     }
   }, [debouncedSearch, currentSearch, updateParams]);
 

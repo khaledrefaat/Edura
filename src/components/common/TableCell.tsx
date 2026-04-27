@@ -1,4 +1,4 @@
-import { TableCell as ShadcnTableCell } from '@/components/ui/table';
+import { TableCell as ShadcnTableCell } from "@/components/ui/table";
 
 export default function TableCell({
   children,
@@ -8,7 +8,7 @@ export default function TableCell({
   className?: string;
 }) {
   return (
-    <ShadcnTableCell className={`px-6 py-4 ${className ?? ''}`}>
+    <ShadcnTableCell className={`px-6 py-4 ${className ?? ""}`}>
       {children}
     </ShadcnTableCell>
   );

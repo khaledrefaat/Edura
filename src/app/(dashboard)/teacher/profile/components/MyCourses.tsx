@@ -1,36 +1,36 @@
-import { BookOpen } from 'lucide-react';
+import { BookOpen } from "lucide-react";
 
 const myCourses = [
   {
     id: 1,
-    title: 'Advanced Mathematics',
+    title: "Advanced Mathematics",
     students: 24,
-    type: 'Group',
-    schedule: 'Mon, Wed, Fri - 10:00 AM',
+    type: "Group",
+    schedule: "Mon, Wed, Fri - 10:00 AM",
     completion: 65,
   },
   {
     id: 2,
-    title: 'Private Tutoring - Algebra',
+    title: "Private Tutoring - Algebra",
     students: 1,
-    type: 'Private',
-    schedule: 'Flexible',
+    type: "Private",
+    schedule: "Flexible",
     completion: 40,
   },
   {
     id: 3,
-    title: 'Calculus Workshop',
+    title: "Calculus Workshop",
     students: 18,
-    type: 'Group',
-    schedule: 'Wed - 1:00 PM',
+    type: "Group",
+    schedule: "Wed - 1:00 PM",
     completion: 75,
   },
   {
     id: 4,
-    title: 'Statistics Fundamentals',
+    title: "Statistics Fundamentals",
     students: 22,
-    type: 'Group',
-    schedule: 'Tue, Thu - 3:00 PM',
+    type: "Group",
+    schedule: "Tue, Thu - 3:00 PM",
     completion: 50,
   },
 ];
@@ -55,20 +55,18 @@ export function MyCourses() {
                   <h3 className="text-sm">{course.title}</h3>
                   <span
                     className={`px-2 py-0.5 rounded-full text-xs ${
-                      course.type === 'Group'
-                        ? 'bg-blue-100 text-blue-700'
-                        : 'bg-purple-100 text-purple-700'
+                      course.type === "Group"
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-purple-100 text-purple-700"
                     }`}
                   >
                     {course.type}
                   </span>
                 </div>
-                <p className="text-xs text-gray-600 mb-1">
-                  {course.schedule}
-                </p>
+                <p className="text-xs text-gray-600 mb-1">{course.schedule}</p>
                 <p className="text-xs text-gray-500">
                   {course.students} student
-                  {course.students !== 1 ? 's' : ''} enrolled
+                  {course.students !== 1 ? "s" : ""} enrolled
                 </p>
               </div>
               <span className="text-xs text-[#D4AF37] px-2 py-1 bg-[#D4AF37]/10 rounded-md">

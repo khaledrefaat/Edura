@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <SidebarProvider>
-      <AppSidebar userRole="teacher" />
+      <AppSidebar />
       <SidebarInset>
         <DashboardTitle>
           <SidebarTrigger className="mt-1" />
