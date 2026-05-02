@@ -1,8 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
+import { createUser } from "@/app/actions/users";
 import CustomButton from "@/components/common/CustomButton";
 import FormInput from "@/components/common/FormInput";
 import { DialogFooter } from "@/components/ui/dialog";
@@ -19,7 +22,12 @@ const formSchema = z.object({
   status: z.enum(["Active", "Inactive"]),
 });
 
-export default function StudentForm() {
+interface StudentFormProps {
+  onSuccess?: () => void;
+}
+
+export default function StudentForm({ onSuccess }: StudentFormProps) {
+  const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,8 +41,23 @@ export default function StudentForm() {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    // TODO: handle student creation via server action
+    startTransition(async () => {
+      const result = await createUser({
+        role: "student",
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        phone: data.contactInfo,
+        birthDate: data.dateOfBirth,
+      });
+
+      if ("success" in result) {
+        toast.success("Student created successfully");
+        onSuccess?.();
+      } else {
+        toast.error(result.error);
+      }
+    });
   };
 
   return (
@@ -79,7 +102,9 @@ export default function StudentForm() {
         />
 
         <DialogFooter>
-          <CustomButton type="submit">Add Student</CustomButton>
+          <CustomButton type="submit" disabled={isPending}>
+            {isPending ? "Adding..." : "Add Student"}
+          </CustomButton>
         </DialogFooter>
       </Form>
     </form>

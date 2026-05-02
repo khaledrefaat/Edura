@@ -1,74 +1,56 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import FiltersBar from "@/components/common/FiltersBar";
-import users from "@/DUMMY_DATA/USERS";
+import { getUsers } from "@/lib/dal";
 import AddUserModal from "./components/AddUserModal";
 import UsersTable from "./components/UsersTable";
+import FiltersBarSkeleton from "@/components/skeleton/FiltersBarSkeleton";
+import TableSkeleton from "@/components/skeleton/TableSkeleton";
 
-function UserManagementContent() {
-  const searchParams = useSearchParams();
-  const searchTerm = searchParams.get("search") ?? "";
-  const filterRole = searchParams.get("role") ?? "All";
-  const currentPage = Number(searchParams.get("page")) || 1;
-  const itemsPerPage = 5;
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}
 
-  const filteredUsers = users.filter((user) => {
-    const matchesSearch =
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterRole === "All" || user.role === filterRole;
-    return matchesSearch && matchesFilter;
+export default async function page({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const search = params.search ?? "";
+  const filterRole = params.role ?? "All";
+  const currentPage = Number(params.page) || 1;
+  const itemsPerPage = 10;
+
+  const { users, total } = await getUsers({
+    search,
+    role: filterRole,
+    page: currentPage,
+    itemsPerPage,
   });
-
-  const paginatedUsers = filteredUsers.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  );
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl mb-2">User Management</h1>
-          <p className="text-gray-600">
-            Manage teachers and students in the system
-          </p>
-        </div>
-        <div className="flex gap-3">
-          <AddUserModal />
-        </div>
+      <div className="absolute top-6 right-6">
+        <AddUserModal />
       </div>
 
       {/* Filters and Search */}
-      <FiltersBar
-        searchPlaceholder="Search by name or email..."
-        filterKey="role"
-        filterOptions={[
-          { value: "All", label: "All Roles" },
-          { value: "Teacher", label: "Teachers" },
-          { value: "Student", label: "Students" },
-        ]}
-      />
+      <Suspense fallback={<FiltersBarSkeleton />}>
+        <FiltersBar
+          searchPlaceholder="Search by name or email..."
+          filterKey="role"
+          filterOptions={[
+            { value: "All", label: "All Roles" },
+            { value: "teacher", label: "Teachers" },
+            { value: "student", label: "Students" },
+          ]}
+        />
+      </Suspense>
 
       {/* Users Table */}
-      <UsersTable
-        users={paginatedUsers}
-        totalItems={filteredUsers.length}
-        itemsPerPage={itemsPerPage}
-      />
+      <Suspense fallback={<TableSkeleton />}>
+        <UsersTable
+          users={users}
+          totalItems={total}
+          itemsPerPage={itemsPerPage}
+        />
+      </Suspense>
     </div>
-  );
-}
-
-export default function UserManagement() {
-  return (
-    <Suspense
-      fallback={<div className="p-8 text-center">Loading users...</div>}
-    >
-      <UserManagementContent />
-    </Suspense>
   );
 }

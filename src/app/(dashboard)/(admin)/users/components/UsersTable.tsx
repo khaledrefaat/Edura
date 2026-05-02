@@ -12,10 +12,10 @@ type User = {
   name: string;
   email: string;
   role: string;
-  status: string;
+  status: string;          // missing from data
   enrolledCourses?: number;
-  contactInfo: string;
-  dateOfBirth?: string;
+  contactInfo: string | null;
+  dateOfBirth?: string | null;
 };
 
 export default function UsersTable({
@@ -98,11 +98,11 @@ function CustomBadge({ text, type }: { text: string; type: string }) {
   return (
     <Badge
       className={`${
-        type === "Student"
+        type === "student"
           ? "bg-blue-100 text-blue-700"
-          : type === "Admin"
-            ? "bg-red-100 text-red-700"
-            : "bg-purple-100 text-purple-700"
+          : type === "teacher"
+            ? "bg-purple-100 text-purple-700"
+            : "bg-red-100 text-red-700"
       }`}
     >
       {text}

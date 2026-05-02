@@ -1,4 +1,4 @@
-import { requireRole } from '@/lib/dal';
+import { requireRole } from "@/lib/dal";
 import { CalendarSection } from "./components/CalendarSection";
 import { MyCourses } from "./components/MyCourses";
 import { ProfileHeader } from "./components/ProfileHeader";
@@ -6,7 +6,7 @@ import { StatsCards } from "./components/StatsCards";
 import { TeachingSchedule } from "./components/TeachingSchedule";
 
 export default async function Page() {
-  await requireRole('teacher');
+  await requireRole("teacher");
   return (
     <div className="space-y-6">
       <ProfileHeader />

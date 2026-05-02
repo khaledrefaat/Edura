@@ -8,6 +8,27 @@
       "when": 1777202139593,
       "tag": "0000_icy_marten_broadcloak",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1777392508169,
+      "tag": "0001_opposite_tombstone",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1777480521816,
+      "tag": "0002_last_rogue",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1777485708231,
+      "tag": "0003_charming_tag",
+      "breakpoints": true
     }
   ]
 }

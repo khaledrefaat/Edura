@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AddCourseModal } from "./components/AddCourseModal";
 import { CoursesFilters } from "./components/CoursesFilters";
-import { CoursesHeader } from "./components/CoursesHeader";
 import { CoursesTable } from "./components/CoursesTable";
 
 interface Course {
@@ -74,48 +72,12 @@ const initialCourses: Course[] = [
 ];
 
 export default function Page() {
-  const [courses, setCourses] = useState<Course[]>(initialCourses);
-  const [showAddModal, setShowAddModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState<"All" | "Group" | "Private">(
     "All",
   );
 
-  const handleAddCourse = (courseData: {
-    title: string;
-    description: string;
-    type: "Group" | "Private";
-    teacher: string;
-    selectedStudents: string[];
-    schedule: {
-      startDate: string;
-      endDate: string;
-      daysOfWeek: string[];
-      startTime: string;
-      endTime: string;
-      exceptions: string[];
-    };
-  }) => {
-    const { daysOfWeek, startTime } = courseData.schedule;
-    const scheduleString =
-      daysOfWeek.length > 0
-        ? `${daysOfWeek.join(", ")} - ${startTime}`
-        : "To be scheduled";
-
-    const newCourse: Course = {
-      id: String(courses.length + 1),
-      title: courseData.title,
-      description: courseData.description,
-      type: courseData.type,
-      teacher: courseData.teacher,
-      students: courseData.selectedStudents.length,
-      schedule: scheduleString,
-    };
-    setCourses([...courses, newCourse]);
-    setShowAddModal(false);
-  };
-
-  const filteredCourses = courses.filter((course) => {
+  const filteredCourses = initialCourses.filter((course) => {
     const matchesSearch =
       course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       course.teacher.toLowerCase().includes(searchTerm.toLowerCase());
@@ -125,7 +87,6 @@ export default function Page() {
 
   return (
     <div className="space-y-6">
-      <CoursesHeader onCreateCourse={() => setShowAddModal(true)} />
       <CoursesFilters
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -133,12 +94,6 @@ export default function Page() {
         onFilterChange={setFilterType}
       />
       <CoursesTable courses={filteredCourses} />
-      {showAddModal && (
-        <AddCourseModal
-          onClose={() => setShowAddModal(false)}
-          onAdd={handleAddCourse}
-        />
-      )}
     </div>
   );
 }

@@ -1,8 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
+import { createUser } from "@/app/actions/users";
 import CustomButton from "@/components/common/CustomButton";
 import FormInput from "@/components/common/FormInput";
 import { DialogFooter } from "@/components/ui/dialog";
@@ -18,7 +21,12 @@ const formSchema = z.object({
   status: z.enum(["Active", "Inactive"]),
 });
 
-export default function TeacherForm() {
+interface TeacherFormProps {
+  onSuccess?: () => void;
+}
+
+export default function TeacherForm({ onSuccess }: TeacherFormProps) {
+  const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -26,13 +34,27 @@ export default function TeacherForm() {
       email: "",
       contactInfo: "",
       password: "",
-      status: "Active",
     },
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    // TODO: handle teacher creation via server action
+    startTransition(async () => {
+      const result = await createUser({
+        role: "teacher",
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        phone: data.contactInfo,
+        active: data.status === "Active",
+      });
+
+      if ("success" in result) {
+        toast.success("Teacher created successfully");
+        onSuccess?.();
+      } else {
+        toast.error(result.error);
+      }
+    });
   };
 
   return (
@@ -70,7 +92,9 @@ export default function TeacherForm() {
         />
 
         <DialogFooter>
-          <CustomButton type="submit">Add Teacher</CustomButton>
+          <CustomButton type="submit" disabled={isPending}>
+            {isPending ? "Adding..." : "Add Teacher"}
+          </CustomButton>
         </DialogFooter>
       </Form>
     </form>

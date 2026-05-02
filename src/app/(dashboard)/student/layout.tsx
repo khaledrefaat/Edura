@@ -1,10 +1,10 @@
-import { requireRole } from '@/lib/dal';
+import { requireRole } from "@/lib/dal";
 
 export default async function StudentLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  await requireRole('student', 'admin');
+  await requireRole("student", "admin");
   return children;
 }

@@ -1,8 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { z } from "zod";
+import { createUser } from "@/app/actions/users";
 import CustomButton from "@/components/common/CustomButton";
 import FormInput from "@/components/common/FormInput";
 import { DialogFooter } from "@/components/ui/dialog";
@@ -16,7 +19,12 @@ const formSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters" }),
 });
 
-export default function AdminForm() {
+interface AdminFormProps {
+  onSuccess?: () => void;
+}
+
+export default function AdminForm({ onSuccess }: AdminFormProps) {
+  const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,8 +35,21 @@ export default function AdminForm() {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    // TODO: handle admin creation via server action
+    startTransition(async () => {
+      const result = await createUser({
+        role: "admin",
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
+
+      if ("success" in result) {
+        toast.success("Admin created successfully");
+        onSuccess?.();
+      } else {
+        toast.error(result.error);
+      }
+    });
   };
 
   return (
@@ -58,7 +79,9 @@ export default function AdminForm() {
         />
 
         <DialogFooter>
-          <CustomButton type="submit">Add Admin</CustomButton>
+          <CustomButton type="submit" disabled={isPending}>
+            {isPending ? "Adding..." : "Add Admin"}
+          </CustomButton>
         </DialogFooter>
       </Form>
     </form>

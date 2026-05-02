@@ -1,9 +1,9 @@
-import { GraduationCap } from 'lucide-react';
-import { notFound } from 'next/navigation';
-import { Sidebar, SidebarHeader } from '@/components/ui/sidebar';
-import { verifySession } from '@/lib/dal';
-import LogoutButton from './logout-button';
-import SideBarNav from './sidebar-nav';
+import { GraduationCap } from "lucide-react";
+import { notFound } from "next/navigation";
+import { Sidebar, SidebarHeader } from "@/components/ui/sidebar";
+import { verifySession } from "@/lib/dal";
+import LogoutButton from "./logout-button";
+import SideBarNav from "./sidebar-nav";
 
 export async function AppSidebar() {
   const session = await verifySession();
@@ -20,7 +20,7 @@ export async function AppSidebar() {
             <GraduationCap className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-lg">EduManage</h1>
+            <h1 className="text-lg">Edura</h1>
             <p className="text-xs text-gray-500 capitalize">
               {session?.role} Portal
             </p>

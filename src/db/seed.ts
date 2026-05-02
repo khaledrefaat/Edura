@@ -1,33 +1,14 @@
 import { eq } from "drizzle-orm";
+import USERS from "@/DUMMY_DATA/USERS";
+import COURSES from "@/DUMMY_DATA/COURSES";
 import * as schema from "@/db/schema";
 import { hashPassword } from "@/lib/password";
 import db from ".";
 
-const SEED_USERS = [
-  {
-    name: "Admin",
-    email: "admin@edumanage.com",
-    password: "k@123456K",
-    role: "admin" as const,
-  },
-  {
-    name: "Teacher",
-    email: "teacher@edumanage.com",
-    password: "k@123456K",
-    role: "teacher" as const,
-  },
-  {
-    name: "Student",
-    email: "student@edumanage.com",
-    password: "k@123456K",
-    role: "student" as const,
-  },
-];
-
 async function main() {
   console.log("🌱 Seeding users...");
 
-  for (const user of SEED_USERS) {
+  for (const user of USERS) {
     const existing = await db
       .select({ id: schema.usersTable.id })
       .from(schema.usersTable)
@@ -51,6 +32,69 @@ async function main() {
       role: user.role,
     });
     console.log(`✅ Created ${user.role}: ${user.email}`);
+  }
+
+  // Build email → id map for users
+  const allUsers = await db
+    .select({ id: schema.usersTable.id, email: schema.usersTable.email })
+    .from(schema.usersTable);
+  const userMap = new Map(allUsers.map((u) => [u.email, u.id]));
+
+  console.log("\n📚 Seeding courses...");
+
+  for (const course of COURSES) {
+    const teacherId = userMap.get(course.teacherEmail);
+    if (!teacherId) {
+      console.log(`⚠️ Teacher not found: ${course.teacherEmail}, skipping`);
+      continue;
+    }
+
+    // Insert course (skip if title already exists)
+    const existingCourse = await db
+      .select({ id: schema.coursesTable.id })
+      .from(schema.coursesTable)
+      .where(eq(schema.coursesTable.title, course.title));
+
+    let courseId: string;
+
+    if (existingCourse.length > 0) {
+      courseId = existingCourse[0].id;
+      console.log(`🔄 Course already exists: ${course.title}`);
+    } else {
+      const [inserted] = await db
+        .insert(schema.coursesTable)
+        .values({
+          title: course.title,
+          description: course.description,
+          type: course.type,
+          teacherId,
+          startDate: course.startDate,
+          endDate: course.endDate,
+          days: course.days,
+          durationMinutes: course.durationMinutes,
+
+        })
+        .returning({ id: schema.coursesTable.id });
+      courseId = inserted.id;
+      console.log(`✅ Created course: ${course.title}`);
+    }
+
+    // Enroll students
+    for (const email of course.studentEmails) {
+      const studentId = userMap.get(email);
+      if (!studentId) {
+        console.log(`⚠️ Student not found: ${email}, skipping`);
+        continue;
+      }
+
+      await db
+        .insert(schema.courseStudentsTable)
+        .values({ courseId, studentId })
+        .onConflictDoNothing();
+    }
+    console.log(
+      `   ↳ Enrolled ${course.studentEmails.length} student(s) in ${course.title}`,
+    );
   }
 
   console.log("\n🎉 Done");

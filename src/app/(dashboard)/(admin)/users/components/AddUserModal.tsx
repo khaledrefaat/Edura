@@ -50,9 +50,15 @@ export default function AddUserModal() {
         />
 
         {/* Form */}
-        {selectedType === "student" && <StudentForm />}
-        {selectedType === "teacher" && <TeacherForm />}
-        {selectedType === "admin" && <AdminForm />}
+        {selectedType === "student" && (
+          <StudentForm onSuccess={() => setOpen(false)} />
+        )}
+        {selectedType === "teacher" && (
+          <TeacherForm onSuccess={() => setOpen(false)} />
+        )}
+        {selectedType === "admin" && (
+          <AdminForm onSuccess={() => setOpen(false)} />
+        )}
       </DialogContent>
     </Dialog>
   );

@@ -1,5 +1,5 @@
-import { jwtVerify, SignJWT } from 'jose';
-import { cookies } from 'next/headers';
+import { jwtVerify, SignJWT } from "jose";
+import { cookies } from "next/headers";
 
 const secretKey = process.env.SESSION_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);
@@ -19,17 +19,17 @@ export async function createSession(payload: SessionPayload) {
     email: payload.email,
     role: payload.role,
   })
-    .setProtectedHeader({ alg: 'HS256' })
+    .setProtectedHeader({ alg: "HS256" })
     .setExpirationTime(expiresAt)
     .setIssuedAt()
     .sign(encodedKey);
 
   const cookieStore = await cookies();
-  cookieStore.set('session', token, {
+  cookieStore.set("session", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    path: '/',
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
     expires: expiresAt,
   });
 }
@@ -41,7 +41,7 @@ export async function decrypt(
 
   try {
     const { payload } = await jwtVerify(token, encodedKey, {
-      algorithms: ['HS256'],
+      algorithms: ["HS256"],
     });
     return payload as unknown as SessionPayload;
   } catch {
@@ -51,5 +51,5 @@ export async function decrypt(
 
 export async function deleteSession() {
   const cookieStore = await cookies();
-  cookieStore.delete('session');
+  cookieStore.delete("session");
 }

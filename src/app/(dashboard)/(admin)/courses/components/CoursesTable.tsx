@@ -1,28 +1,20 @@
-"use client";
-
-import { BookOpen, Eye } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import TableCell from "@/components/common/TableCell";
 import TableHeadCell from "@/components/common/TableHeadCell";
 import TablePagination from "@/components/common/TablePagination";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableHeader, TableRow } from "@/components/ui/table";
-
-type Course = {
-  id: string;
-  title: string;
-  description: string;
-  type: string;
-  teacher: string;
-  students: number;
-  schedule: string;
-};
+import type { CourseRow } from "@/lib/dal";
+import CourseDetailsDialog from "./CourseDetailsDialog";
+import EditCourseModal from "./EditCourseModal";
+import Link from "next/link";
 
 export default function CoursesTable({
   courses,
   totalItems,
   itemsPerPage,
 }: {
-  courses: Course[];
+  courses: CourseRow[];
   totalItems: number;
   itemsPerPage: number;
 }) {
@@ -38,9 +30,11 @@ export default function CoursesTable({
     );
   }
 
+  console.log(courses);
+
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-      <Table>
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
+      <Table className="overflow-x-auto">
         <TableHeader className="bg-gray-50">
           <TableRow className="hover:bg-gray-50">
             <TableHeadCell>Course Title</TableHeadCell>
@@ -60,26 +54,20 @@ export default function CoursesTable({
               <TableCell>
                 <div>
                   <div className="text-gray-900 mb-1">{course.title}</div>
-                  <div className="text-sm text-gray-500 line-clamp-1">
-                    {course.description}
-                  </div>
                 </div>
               </TableCell>
               <TableCell>
                 <TypeBadge type={course.type} />
               </TableCell>
-              <TableCell>{course.teacher}</TableCell>
+              <TableCell className="underline">
+                <Link href={`/teacher/${course.teacherId}`}>{course.teacher}</Link>
+              </TableCell>
               <TableCell>{course.students}</TableCell>
               <TableCell>{course.schedule}</TableCell>
               <TableCell>
-                <div className="flex items-center justify-center">
-                  <button
-                    className="p-2 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white rounded-lg transition-all"
-                    title="View course details"
-                    type="button"
-                  >
-                    <Eye className="w-5 h-5" />
-                  </button>
+                <div className="flex items-center justify-center gap-1">
+                  <CourseDetailsDialog course={course} />
+                  <EditCourseModal course={course} />
                 </div>
               </TableCell>
             </TableRow>
@@ -97,15 +85,16 @@ export default function CoursesTable({
 }
 
 function TypeBadge({ type }: { type: string }) {
+  const label = type.charAt(0).toUpperCase() + type.slice(1);
   return (
     <Badge
       className={
-        type === "Group"
+        type === "group"
           ? "bg-blue-100 text-blue-700"
           : "bg-purple-100 text-purple-700"
       }
     >
-      {type}
+      {label}
     </Badge>
   );
 }

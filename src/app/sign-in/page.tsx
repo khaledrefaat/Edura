@@ -38,9 +38,9 @@ export default function page() {
           <div className="mt-6 pt-6 border-t border-gray-100">
             <p className="text-xs text-gray-500 mb-2">Demo credentials:</p>
             <div className="space-y-1 text-xs text-gray-600">
-              <p>• Admin: admin@edumanage.com</p>
-              <p>• Teacher: teacher@edumanage.com</p>
-              <p>• Student: student@edumanage.com</p>
+              <p>• Admin: admin@edura.com</p>
+              <p>• Teacher: teacher@edura.com</p>
+              <p>• Student: student@edura.com</p>
             </div>
           </div>
         </div>

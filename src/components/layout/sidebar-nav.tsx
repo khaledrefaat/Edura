@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   BookOpen,
@@ -6,8 +6,8 @@ import {
   LayoutDashboard,
   UserCircle,
   Users,
-} from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
+} from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import {
   SidebarContent,
   SidebarGroup,
@@ -15,7 +15,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
 
 interface AppSidebarProps {
   userRole: UserRole;
@@ -23,46 +23,46 @@ interface AppSidebarProps {
 
 const allMenuItems = {
   admin: [
-    { id: 'dashboard', href: '/', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'users', href: '/users', label: 'User Management', icon: Users },
+    { id: "dashboard", href: "/", label: "Dashboard", icon: LayoutDashboard },
+    { id: "users", href: "/users", label: "User Management", icon: Users },
     {
-      id: 'courses',
-      href: '/courses',
-      label: 'Course Management',
+      id: "courses",
+      href: "/courses",
+      label: "Course Management",
       icon: BookOpen,
     },
   ],
   teacher: [
     {
-      id: 'teacher-profile',
-      href: '/teacher/profile',
-      label: 'My Profile',
+      id: "teacher-profile",
+      href: "/teacher/profile",
+      label: "My Profile",
       icon: UserCircle,
     },
     {
-      id: 'teacher-schedule-page',
-      href: '/teacher/schedule',
-      label: 'My Schedule',
+      id: "teacher-schedule-page",
+      href: "/teacher/schedule",
+      label: "My Schedule",
       icon: Calendar,
     },
     {
-      id: 'courses',
-      href: '/teacher/courses',
-      label: 'My Courses',
+      id: "courses",
+      href: "/teacher/courses",
+      label: "My Courses",
       icon: BookOpen,
     },
   ],
   student: [
     {
-      id: 'student-profile',
-      href: '/student/profile',
-      label: 'My Profile',
+      id: "student-profile",
+      href: "/student/profile",
+      label: "My Profile",
       icon: UserCircle,
     },
     {
-      id: 'student-schedule-page',
-      href: '/student/schedule',
-      label: 'My Schedule',
+      id: "student-schedule-page",
+      href: "/student/schedule",
+      label: "My Schedule",
       icon: Calendar,
     },
   ],
@@ -90,7 +90,7 @@ export default function SideBarNav({ userRole }: AppSidebarProps) {
                     className="cursor-pointer"
                   >
                     <Icon
-                      className={`w-5 h-5 ${isActive ? 'text-white' : 'text-gray-700'}`}
+                      className={`w-5 h-5 ${isActive ? "text-white" : "text-gray-700"}`}
                     />
                     <span>{item.label}</span>
                   </SidebarMenuButton>

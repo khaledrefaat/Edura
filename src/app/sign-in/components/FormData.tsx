@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { AtSign, LockKeyhole } from 'lucide-react';
-import { useState, useTransition } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import CustomButton from '@/components/common/CustomButton';
-import FormInput from '@/components/common/FormInput';
-import { Checkbox } from '@/components/ui/checkbox';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AtSign, LockKeyhole } from "lucide-react";
+import { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import CustomButton from "@/components/common/CustomButton";
+import FormInput from "@/components/common/FormInput";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from '@/components/ui/form';
-import { type SignInState, signIn } from '../actions';
+} from "@/components/ui/form";
+import { type SignInState, signIn } from "../actions";
 
 const formSchema = z.object({
-  email: z.string().email({ message: 'Invalid email address' }),
+  email: z.string().email({ message: "Invalid email address" }),
   password: z
     .string()
-    .min(6, { message: 'Password must be at least 6 characters' }),
+    .min(6, { message: "Password must be at least 6 characters" }),
   rememberMe: z.boolean(),
 });
 
@@ -32,17 +32,17 @@ export default function SignInForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       rememberMe: false,
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const formData = new FormData();
-    formData.append('email', values.email);
-    formData.append('password', values.password);
-    formData.append('rememberMe', values.rememberMe ? 'on' : 'off');
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+    formData.append("rememberMe", values.rememberMe ? "on" : "off");
 
     startTransition(async () => {
       const result = await signIn(formData);
@@ -58,7 +58,7 @@ export default function SignInForm() {
           name="email"
           label="Email Address"
           type="email"
-          placeholder="admin@edumanage.com"
+          placeholder="admin@edura.com"
           icon={AtSign}
         />
 

@@ -1,74 +1,56 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import FiltersBar from "@/components/common/FiltersBar";
-import courses from "@/DUMMY_DATA/COURSES";
+import { getCourses } from "@/lib/dal";
 import AddCoursesModal from "./components/AddCoursesModal";
 import CoursesTable from "./components/CoursesTable";
+import FiltersBarSkeleton from "@/components/skeleton/FiltersBarSkeleton";
+import TableSkeleton from "@/components/skeleton/TableSkeleton";
 
-function CourseManagementContent() {
-  const searchParams = useSearchParams();
-  const searchTerm = searchParams.get("search") ?? "";
-  const filterType = searchParams.get("type") ?? "All";
-  const currentPage = Number(searchParams.get("page")) || 1;
-  const itemsPerPage = 5;
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}
 
-  const filteredCourses = courses.filter((course) => {
-    const matchesSearch =
-      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.teacher.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterType === "All" || course.type === filterType;
-    return matchesSearch && matchesFilter;
+export default async function page({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const search = params.search ?? "";
+  const filterType = params.type ?? "All";
+  const currentPage = Number(params.page) || 1;
+  const itemsPerPage = 10;
+
+  const { courses, total } = await getCourses({
+    search,
+    type: filterType,
+    page: currentPage,
+    itemsPerPage,
   });
-
-  const paginatedCourses = filteredCourses.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  );
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl mb-2">Course Management</h1>
-          <p className="text-gray-600">
-            Manage all courses and class schedules
-          </p>
-        </div>
-        <div className="flex gap-3">
-          <AddCoursesModal />
-        </div>
+      <div className="flex gap-3 absolute top-6 right-6">
+        <AddCoursesModal />
       </div>
 
+      <Suspense fallback={<FiltersBarSkeleton />}>
       {/* Filters and Search */}
       <FiltersBar
-        searchPlaceholder="Search courses by title or teacher..."
+        searchPlaceholder="Search courses by teacher..."
         filterKey="type"
         filterOptions={[
           { value: "All", label: "All Courses" },
-          { value: "Group", label: "Group" },
-          { value: "Private", label: "Private" },
+          { value: "group", label: "Group" },
+          { value: "private", label: "Private" },
         ]}
       />
+      </Suspense>
 
       {/* Courses Table */}
+      <Suspense fallback={<TableSkeleton />}>
       <CoursesTable
-        courses={paginatedCourses}
-        totalItems={filteredCourses.length}
+        courses={courses}
+        totalItems={total}
         itemsPerPage={itemsPerPage}
       />
+      </Suspense>
     </div>
-  );
-}
-
-export default function CourseManagement() {
-  return (
-    <Suspense
-      fallback={<div className="p-8 text-center">Loading courses...</div>}
-    >
-      <CourseManagementContent />
-    </Suspense>
   );
 }
